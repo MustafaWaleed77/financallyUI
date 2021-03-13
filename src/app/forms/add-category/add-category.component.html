@@ -1,0 +1,47 @@
+<div nz-row>
+  <div nz-col [nzLg]="{span: 6}" nzSpan="0"></div>
+  <div nz-col [nzLg]="{span: 12}" nzSpan="24">
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="categoryForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label nzRequired>Category Add Date</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the date for this Category!">
+          <nz-input-group nzPrefixIcon="calendar">
+            <nz-date-picker formControlName="date" style="width: 100%" nzSuffixIcon=""
+                            nzBorderless="true"></nz-date-picker>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Category Name</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the name for this Category!">
+          <nz-input-group nzPrefixIcon="info">
+            <input formControlName="name" nz-input placeholder="Name"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Category Tags</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="tag">
+            <input formControlName="tags" nz-input placeholder="Tags"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Category Notes</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="comment">
+            <input formControlName="notes" nz-input placeholder="Notes"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [disabled]="!categoryForm.valid" style="float: right">Submit
+            Purchase
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
