@@ -1,0 +1,70 @@
+<div nz-row>
+  <div nz-col [nzLg]="{span: 6}" nzSpan="0"></div>
+  <div nz-col [nzLg]="{span: 12}" nzSpan="24">
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="AddTransactionForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label nzRequired>Transaction Date</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the date for this Transaction!">
+          <nz-input-group nzPrefixIcon="calendar">
+            <nz-date-picker formControlName="date" style="width: 100%" nzSuffixIcon="" nzBorderless="true"></nz-date-picker>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Transaction Category</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the category for this Transaction!">
+          <nz-input-group nzPrefixIcon="book">
+            <input formControlName="category" nz-input placeholder="Category"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Transaction Name</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the name for this Transaction!">
+          <nz-input-group nzPrefixIcon="info">
+            <input formControlName="name" nz-input placeholder="Name"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Transaction Price</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the price!">
+          <nz-input-group nzPrefixIcon="dollar">
+            <input formControlName="price" nz-input placeholder="Price"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Transaction Payed To</nz-form-label>
+        <nz-form-control nzErrorTip="Please input who you payed!">
+          <nz-input-group nzPrefixIcon="user">
+            <input formControlName="payingTo" nz-input placeholder="Paying To"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Transaction Tags</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="tag">
+            <input formControlName="tags" nz-input placeholder="Tags"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Transaction Notes</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="comment">
+            <input formControlName="notes" nz-input placeholder="Notes"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button nzType="primary" [disabled]="!AddTransactionForm.valid" style="float: right">Submit
+            Purchase
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
