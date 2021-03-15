@@ -22,9 +22,15 @@
       <nz-form-item>
         <nz-form-label>Category Tags</nz-form-label>
         <nz-form-control>
-          <nz-input-group nzPrefixIcon="tag">
-            <input formControlName="tags" nz-input placeholder="Tags"/>
+          <nz-input-group nzPrefixIcon="tag" [nzAddOnAfter]="addTagIconAfter">
+            <input formControlName="tag" nz-input placeholder="Tags"
+                   (blur)="handleInputConfirm()"
+                   (keydown.enter)="handleInputConfirm()"/>
           </nz-input-group>
+          <nz-divider nzText="Tags" style="margin: 8px 0"></nz-divider>
+          <nz-tag *ngFor="let tag of tags; let i = index" nzMode="closeable" (nzOnClose)="removeTag(i)" class="pointer" (click)="editTag(i)">
+            {{tag | slice:0:MAX_TAG_DISPLAY_LENGTH}}<span *ngIf="tag.length > MAX_TAG_DISPLAY_LENGTH">...</span>
+          </nz-tag>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -37,11 +43,14 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-control>
-          <button nz-button nzType="primary" [disabled]="!categoryForm.valid" style="float: right">Submit
-            Purchase
+          <button nz-button nzType="primary" [disabled]="!categoryForm.valid" style="float: right">
+            Submit
           </button>
         </nz-form-control>
       </nz-form-item>
     </form>
   </div>
 </div>
+<ng-template #addTagIconAfter>
+  <i nz-icon nzType="plus-square" nzTheme="outline" (click)="handleInputConfirm()" class="pointer"></i>
+</ng-template>

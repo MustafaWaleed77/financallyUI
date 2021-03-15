@@ -11,10 +11,10 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label nzRequired>Transaction Category</nz-form-label>
+        <nz-form-label nzRequired>Transaction CategoryInterface</nz-form-label>
         <nz-form-control nzErrorTip="Please input the category for this Transaction!">
           <nz-input-group nzPrefixIcon="book">
-            <input formControlName="category" nz-input placeholder="Category"/>
+            <input formControlName="category" nz-input placeholder="CategoryInterface"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -60,8 +60,8 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-control>
-          <button nz-button nzType="primary" [disabled]="!AddTransactionForm.valid" style="float: right">Submit
-            Purchase
+          <button nz-button nzType="primary" [disabled]="!AddTransactionForm.valid" style="float: right">
+            Submit Transaction
           </button>
         </nz-form-control>
       </nz-form-item>
