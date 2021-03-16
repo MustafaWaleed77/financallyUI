@@ -2,15 +2,15 @@
   <div nz-col [nzLg]="{span: 6}" nzSpan="0"></div>
   <div nz-col [nzLg]="{span: 12}" nzSpan="24">
     <form nz-form [nzLayout]="'vertical'" [formGroup]="addExpenseForm">
-      <nz-form-item>
-        <nz-form-label nzRequired>Expense Date</nz-form-label>
-        <nz-form-control nzErrorTip="Please input the date for this Expense!">
-          <nz-input-group nzPrefixIcon="calendar">
-            <nz-date-picker formControlName="date" style="width: 100%" nzSuffixIcon=""
-                            nzBorderless="true"></nz-date-picker>
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
+<!--      <nz-form-item>-->
+<!--        <nz-form-label nzRequired>Expense Date</nz-form-label>-->
+<!--        <nz-form-control nzErrorTip="Please input the date for this Expense!">-->
+<!--          <nz-input-group nzPrefixIcon="calendar">-->
+<!--            <nz-date-picker formControlName="date" style="width: 100%" nzSuffixIcon=""-->
+<!--                            nzBorderless="true"></nz-date-picker>-->
+<!--          </nz-input-group>-->
+<!--        </nz-form-control>-->
+<!--      </nz-form-item>-->
       <nz-form-item>
         <nz-form-label nzRequired>Expense Category</nz-form-label>
         <nz-form-control nzErrorTip="Please input the category for this Expense!">
@@ -35,14 +35,6 @@
         <nz-form-control nzDisableAutoTips [nzErrorTip]="priceErrorTip">
           <nz-input-group nzPrefixIcon="dollar">
             <input formControlName="price" nz-input placeholder="Price"/>
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label>Expense Payed To</nz-form-label>
-        <nz-form-control nzErrorTip="Please input who you payed!">
-          <nz-input-group nzPrefixIcon="user">
-            <input formControlName="payingTo" nz-input placeholder="Paying To"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>

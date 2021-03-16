@@ -27,17 +27,14 @@ export class AddExpenseFormComponent implements OnInit {
     this.categories = [
       new ExpenseCategoryBuilder()
         .withId('1')
-        .withDate(new Date())
         .withName('General')
         .build(),
       new ExpenseCategoryBuilder()
         .withId('2')
-        .withDate(new Date())
         .withName('Nice')
         .build(),
       new ExpenseCategoryBuilder()
         .withId('3')
-        .withDate(new Date())
         .withName('Food')
         .build()
     ];
@@ -45,11 +42,9 @@ export class AddExpenseFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.addExpenseForm = this.fb.group({
-      date: [Date.now(), [Validators.required]],
       name: [null, [Validators.required]],
       price: [null, [Validators.required, Validators.pattern(`^\\d+(\.\\d{1,${this.MAX_FRACTION_LENGTH}})?`)]],
       category: [null, [Validators.required]],
-      payingTo: [null],
       notes: [null],
       tag: [null],
       remember: [false]
@@ -67,10 +62,8 @@ export class AddExpenseFormComponent implements OnInit {
     }
     const expense: Expense = this.expenseBuilder
       .withCategory(this.addExpenseForm.controls.category.value)
-      .withDate(this.addExpenseForm.controls.date.value)
       .withName(this.addExpenseForm.controls.name.value)
       .withNotes(this.addExpenseForm.controls.notes.value)
-      .withPayingTo(this.addExpenseForm.controls.payingTo.value)
       .withPrice(this.addExpenseForm.controls.price.value)
       .withTags(this.tags)
       .build();

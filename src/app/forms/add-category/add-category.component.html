@@ -3,35 +3,11 @@
   <div nz-col [nzLg]="{span: 12}" nzSpan="24">
     <form nz-form [nzLayout]="'vertical'" [formGroup]="categoryForm">
       <nz-form-item>
-        <nz-form-label nzRequired>Category Add Date</nz-form-label>
-        <nz-form-control nzErrorTip="Please input the date for this Category!">
-          <nz-input-group nzPrefixIcon="calendar">
-            <nz-date-picker formControlName="date" style="width: 100%" nzSuffixIcon=""
-                            nzBorderless="true"></nz-date-picker>
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
         <nz-form-label nzRequired>Category Name</nz-form-label>
         <nz-form-control nzErrorTip="Please input the name for this Category!">
           <nz-input-group nzPrefixIcon="info">
             <input formControlName="name" nz-input placeholder="Name"/>
           </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label>Category Tags</nz-form-label>
-        <nz-form-control>
-          <nz-input-group nzPrefixIcon="tag" [nzAddOnAfter]="addTagIconAfter">
-            <input formControlName="tag" nz-input placeholder="Tags"
-                   (blur)="handleInputConfirm()"
-                   (keydown.enter)="handleInputConfirm()"/>
-          </nz-input-group>
-          <nz-divider nzText="Tags" style="margin: 8px 0"></nz-divider>
-          <nz-tag *ngFor="let tag of tags; let i = index" nzMode="closeable" (nzOnClose)="removeTag(i)" class="pointer"
-                  (click)="editTag(i)">
-            {{tag | slice:0:MAX_TAG_DISPLAY_LENGTH}}<span *ngIf="tag.length > MAX_TAG_DISPLAY_LENGTH">...</span>
-          </nz-tag>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -53,6 +29,3 @@
     </form>
   </div>
 </div>
-<ng-template #addTagIconAfter>
-  <i nz-icon nzType="plus-square" nzTheme="outline" (click)="handleInputConfirm()" class="pointer"></i>
-</ng-template>

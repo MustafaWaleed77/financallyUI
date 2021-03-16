@@ -11,9 +11,7 @@ import {ExpenseCategoryBuilder} from '../../classes/Builders/Category/ExpenseCat
 })
 export class AddCategoryComponent implements OnInit {
   expenseCategoryBuilder: ExpenseCategoryBuilder;
-  MAX_TAG_DISPLAY_LENGTH = 10;
   categoryForm!: FormGroup;
-  tags: string[] = ['All'];
 
   @ViewChild('inputElement', {static: false}) inputElement?: ElementRef;
 
@@ -25,10 +23,8 @@ export class AddCategoryComponent implements OnInit {
       }
     }
     const transactionCategory: ExpenseCategory = this.expenseCategoryBuilder
-      .withDate(this.categoryForm.controls.date.value)
       .withName(this.categoryForm.controls.name.value)
       .withNotes(this.categoryForm.controls.notes.value)
-      .withTags(this.tags)
       .build();
     console.log(transactionCategory);
     this.reset();
@@ -37,7 +33,6 @@ export class AddCategoryComponent implements OnInit {
   reset(): void {
     this.categoryForm.reset();
     this.expenseCategoryBuilder = new ExpenseCategoryBuilder();
-    this.tags = [];
   }
 
   constructor(private fb: FormBuilder) {
@@ -46,29 +41,9 @@ export class AddCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryForm = this.fb.group({
-      date: [new Date(), [Validators.required]],
       name: [null, [Validators.required]],
       notes: [null],
-      tag: [null],
       remember: [false]
     });
-  }
-
-
-  removeTag(index: number): void {
-    this.tags.splice(index, 1);
-  }
-
-  editTag(index: number): void {
-    this.categoryForm.controls.tag.setValue(this.tags[index]);
-    this.tags.splice(index, 1);
-  }
-
-  handleInputConfirm(): void {
-    const tag: string = this.categoryForm.controls.tag.value;
-    if (tag && this.tags.indexOf(tag) === -1) {
-      this.tags.push(tag);
-    }
-    this.categoryForm.controls.tag.setValue(null);
   }
 }

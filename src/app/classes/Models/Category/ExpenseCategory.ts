@@ -1,10 +1,10 @@
 import {CategoryInterface} from './CategoryInterface';
 
 export class ExpenseCategory {
-  private props: CategoryInterface;
+  readonly props: CategoryInterface;
 
   constructor() {
-    this.props = {id: '', date: new Date(), name: ''};
+    this.props = {id: '', name: ''};
   }
 
   getFields(): CategoryInterface {
@@ -17,14 +17,6 @@ export class ExpenseCategory {
 
   get id(): string {
     return this.props.id;
-  }
-
-  set date(value: Date) {
-    this.props.date = value;
-  }
-
-  get date(): Date {
-    return this.props.date;
   }
 
   get name(): string {
@@ -43,11 +35,4 @@ export class ExpenseCategory {
     this.props.notes = value;
   }
 
-  get tags(): string[] | undefined {
-    return this.props.tags;
-  }
-
-  set tags(value: string[] | undefined) {
-    this.props.tags = value;
-  }
 }

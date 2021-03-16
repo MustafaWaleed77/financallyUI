@@ -17,11 +17,6 @@ export class ExpenseCategoryBuilder implements CategoryBuilderInterface {
     return this;
   }
 
-  withDate(date: Date): ExpenseCategoryBuilder {
-    this.expenseCategory.date = date;
-    return this;
-  }
-
   withName(name: string): ExpenseCategoryBuilder {
     this.expenseCategory.name = name;
     return this;
@@ -29,11 +24,6 @@ export class ExpenseCategoryBuilder implements CategoryBuilderInterface {
 
   withNotes(notes: string): ExpenseCategoryBuilder {
     this.expenseCategory.notes = notes;
-    return this;
-  }
-
-  withTags(tags: string[]): ExpenseCategoryBuilder {
-    this.expenseCategory.tags = tags;
     return this;
   }
 
