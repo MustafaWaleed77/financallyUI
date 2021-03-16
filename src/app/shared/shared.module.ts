@@ -15,6 +15,7 @@ import {NzTableModule} from 'ng-zorro-antd/table';
 import {NzTagModule} from 'ng-zorro-antd/tag';
 import {NzDividerModule} from 'ng-zorro-antd/divider';
 import {NzInputModule} from 'ng-zorro-antd/input';
+import {NzSelectModule} from 'ng-zorro-antd/select';
 
 
 
@@ -40,7 +41,8 @@ import {NzInputModule} from 'ng-zorro-antd/input';
     NzDatePickerModule,
     NzTableModule,
     NzTagModule,
-    NzDividerModule
+    NzDividerModule,
+    NzSelectModule
   ]
 })
 export class SharedModule { }

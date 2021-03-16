@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { FormsRoutingModule } from './forms-routing.module';
 import { FormsComponent } from './forms.component';
-import { AddTransactionsFormComponent } from './add-transactions-form/add-transactions-form.component';
+import { AddExpenseFormComponent } from './add-expense-form/add-expense-form.component';
 import {SharedModule} from '../shared/shared.module';
 import { AddCategoryComponent } from './add-category/add-category.component';
-import {TransactionCategoryBuilder} from '../classes/Builders/Category/TransactionCategoryBuilder';
+import {ExpenseCategoryBuilder} from '../classes/Builders/Category/ExpenseCategoryBuilder';
 
 
 @NgModule({
-  declarations: [FormsComponent, AddTransactionsFormComponent, AddCategoryComponent],
+  declarations: [FormsComponent, AddExpenseFormComponent, AddCategoryComponent],
   imports: [
     SharedModule,
     FormsRoutingModule
   ],
-  exports: [AddTransactionsFormComponent],
-  providers: [TransactionCategoryBuilder]
+  exports: [AddExpenseFormComponent],
+  providers: [ExpenseCategoryBuilder]
 })
 export class FormsModule { }

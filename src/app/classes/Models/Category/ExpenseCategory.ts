@@ -1,10 +1,22 @@
 import {CategoryInterface} from './CategoryInterface';
 
-export class TransactionCategory {
+export class ExpenseCategory {
   private props: CategoryInterface;
 
   constructor() {
-    this.props = {date: new Date(), name: ''};
+    this.props = {id: '', date: new Date(), name: ''};
+  }
+
+  getFields(): CategoryInterface {
+    return this.props;
+  }
+
+  set id(value: string) {
+    this.props.id = value;
+  }
+
+  get id(): string {
+    return this.props.id;
   }
 
   set date(value: Date) {

@@ -1,7 +1,7 @@
 <div nz-row>
   <div nz-col [nzLg]="{span: 6}" nzSpan="0"></div>
   <div nz-col [nzLg]="{span: 12}" nzSpan="24">
-    <form nz-form [nzLayout]="'vertical'" [formGroup]="categoryForm" (ngSubmit)="submitForm()">
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="categoryForm">
       <nz-form-item>
         <nz-form-label nzRequired>Category Add Date</nz-form-label>
         <nz-form-control nzErrorTip="Please input the date for this Category!">
@@ -28,7 +28,8 @@
                    (keydown.enter)="handleInputConfirm()"/>
           </nz-input-group>
           <nz-divider nzText="Tags" style="margin: 8px 0"></nz-divider>
-          <nz-tag *ngFor="let tag of tags; let i = index" nzMode="closeable" (nzOnClose)="removeTag(i)" class="pointer" (click)="editTag(i)">
+          <nz-tag *ngFor="let tag of tags; let i = index" nzMode="closeable" (nzOnClose)="removeTag(i)" class="pointer"
+                  (click)="editTag(i)">
             {{tag | slice:0:MAX_TAG_DISPLAY_LENGTH}}<span *ngIf="tag.length > MAX_TAG_DISPLAY_LENGTH">...</span>
           </nz-tag>
         </nz-form-control>
@@ -43,7 +44,8 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-control>
-          <button nz-button nzType="primary" [disabled]="!categoryForm.valid" style="float: right">
+          <button type="button" nz-button nzType="primary" (click)="submitForm()" [disabled]="!categoryForm.valid"
+                  style="float: right">
             Submit
           </button>
         </nz-form-control>

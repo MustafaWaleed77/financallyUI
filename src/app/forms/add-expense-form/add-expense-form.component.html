@@ -1,0 +1,93 @@
+<div nz-row>
+  <div nz-col [nzLg]="{span: 6}" nzSpan="0"></div>
+  <div nz-col [nzLg]="{span: 12}" nzSpan="24">
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="addExpenseForm">
+      <nz-form-item>
+        <nz-form-label nzRequired>Expense Date</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the date for this Expense!">
+          <nz-input-group nzPrefixIcon="calendar">
+            <nz-date-picker formControlName="date" style="width: 100%" nzSuffixIcon=""
+                            nzBorderless="true"></nz-date-picker>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Expense Category</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the category for this Expense!">
+          <nz-input-group nzPrefixIcon="book">
+            <nz-select formControlName="category" nzBorderless="true">
+              <nz-option *ngFor="let category of categories; let i = index" [nzValue]="category.id"
+                         [nzLabel]="category.name"></nz-option>
+            </nz-select>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Expense Name</nz-form-label>
+        <nz-form-control nzErrorTip="Please input the name for this Expense!">
+          <nz-input-group nzPrefixIcon="info">
+            <input formControlName="name" nz-input placeholder="Name"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>Expense Price</nz-form-label>
+        <nz-form-control nzDisableAutoTips [nzErrorTip]="priceErrorTip">
+          <nz-input-group nzPrefixIcon="dollar">
+            <input formControlName="price" nz-input placeholder="Price"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Expense Payed To</nz-form-label>
+        <nz-form-control nzErrorTip="Please input who you payed!">
+          <nz-input-group nzPrefixIcon="user">
+            <input formControlName="payingTo" nz-input placeholder="Paying To"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Expense Tags</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="tag" [nzAddOnAfter]="addTagIconAfter">
+            <input formControlName="tag" nz-input placeholder="Tags"
+                   (blur)="handleInputConfirm()"
+                   (keydown.enter)="handleInputConfirm()"/>
+          </nz-input-group>
+          <nz-divider nzText="Tags" style="margin: 8px 0"></nz-divider>
+          <nz-tag *ngFor="let tag of tags; let i = index" nzMode="closeable" (nzOnClose)="removeTag(i)" class="pointer"
+                  (click)="editTag(i)">
+            {{tag | slice:0:MAX_TAG_DISPLAY_LENGTH}}<span *ngIf="tag.length > MAX_TAG_DISPLAY_LENGTH">...</span>
+          </nz-tag>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>Expense Notes</nz-form-label>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="comment">
+            <input formControlName="notes" nz-input placeholder="Notes"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button type="button" nz-button nzType="primary" [disabled]="!addExpenseForm.valid" style="float: right" (click)="submitForm()">
+            Submit Expense
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
+<ng-template #addTagIconAfter>
+  <i nz-icon nzType="plus-square" nzTheme="outline" (click)="handleInputConfirm()" class="pointer"></i>
+</ng-template>
+
+<ng-template #priceErrorTip let-control>
+  <ng-container *ngIf="control.hasError('required')">
+    Please enter price for this expense!
+  </ng-container>
+  <ng-container *ngIf="control.hasError('pattern')">
+    price is not correct ex: x.xxxxx (use dot), Max length after fraction is {{MAX_FRACTION_LENGTH}}!
+  </ng-container>
+</ng-template>

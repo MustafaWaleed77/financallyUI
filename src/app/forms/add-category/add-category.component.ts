@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TransactionCategory} from '../../classes/Models/Category/TransactionCategory';
-import {TransactionCategoryBuilder} from '../../classes/Builders/Category/TransactionCategoryBuilder';
+import {ExpenseCategory} from '../../classes/Models/Category/ExpenseCategory';
+import {ExpenseCategoryBuilder} from '../../classes/Builders/Category/ExpenseCategoryBuilder';
 
 
 @Component({
@@ -10,10 +10,13 @@ import {TransactionCategoryBuilder} from '../../classes/Builders/Category/Transa
   styleUrls: ['./add-category.component.scss']
 })
 export class AddCategoryComponent implements OnInit {
+  expenseCategoryBuilder: ExpenseCategoryBuilder;
   MAX_TAG_DISPLAY_LENGTH = 10;
   categoryForm!: FormGroup;
   tags: string[] = ['All'];
-  @ViewChild('inputElement', { static: false }) inputElement?: ElementRef;
+
+  @ViewChild('inputElement', {static: false}) inputElement?: ElementRef;
+
   submitForm(): void {
     for (const field in this.categoryForm.controls) {
       if (this.categoryForm.controls.hasOwnProperty(field)) {
@@ -21,16 +24,24 @@ export class AddCategoryComponent implements OnInit {
         this.categoryForm.controls[field].updateValueAndValidity();
       }
     }
-    const transactionCategory: TransactionCategory = this.transactionCategoryBuilder
+    const transactionCategory: ExpenseCategory = this.expenseCategoryBuilder
       .withDate(this.categoryForm.controls.date.value)
       .withName(this.categoryForm.controls.name.value)
       .withNotes(this.categoryForm.controls.notes.value)
       .withTags(this.tags)
       .build();
     console.log(transactionCategory);
+    this.reset();
   }
 
-  constructor(private fb: FormBuilder, private transactionCategoryBuilder: TransactionCategoryBuilder) {
+  reset(): void {
+    this.categoryForm.reset();
+    this.expenseCategoryBuilder = new ExpenseCategoryBuilder();
+    this.tags = [];
+  }
+
+  constructor(private fb: FormBuilder) {
+    this.expenseCategoryBuilder = new ExpenseCategoryBuilder();
   }
 
   ngOnInit(): void {
@@ -47,6 +58,7 @@ export class AddCategoryComponent implements OnInit {
   removeTag(index: number): void {
     this.tags.splice(index, 1);
   }
+
   editTag(index: number): void {
     this.categoryForm.controls.tag.setValue(this.tags[index]);
     this.tags.splice(index, 1);
